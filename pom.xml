@@ -12,6 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<android.sdk.version>4.1.1.4</android.sdk.version>
 		<android.plugin.version>3.6.0</android.plugin.version>
+		<org.springframework.social-version>1.1.0.RELEASE</org.springframework.social-version>
 	</properties>
 
 	<dependencies>
@@ -20,6 +21,12 @@
 			<artifactId>android</artifactId>
 			<version>${android.sdk.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+			<version>${org.springframework.social-version}</version>
 		</dependency>
 	</dependencies>
 
