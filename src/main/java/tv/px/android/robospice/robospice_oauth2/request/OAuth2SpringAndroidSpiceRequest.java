@@ -21,6 +21,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     */
    public OAuth2SpringAndroidSpiceRequest(Class<RESULT> clazz) {
       super(clazz);
+      // TODO accept a grant
    }
 
    /**

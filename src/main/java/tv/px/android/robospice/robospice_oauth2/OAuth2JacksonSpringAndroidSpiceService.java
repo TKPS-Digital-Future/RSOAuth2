@@ -29,7 +29,11 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
    public void addRequest(CachedSpiceRequest<?> request, Set<RequestListener<?>> listRequestListener) {
       if (request.getSpiceRequest() instanceof OAuth2SpringAndroidSpiceRequest) {
          request.getSpiceRequest().setRetryPolicy(new OAuth2RetryPolicy(this));
+         // TODO set the grant for the request and the retry-policy
       }
+      
+      // TODO if the request is for a grant, add a custom listener that will update the grant here
+      
       super.addRequest(request, listRequestListener);
    }
 

@@ -21,6 +21,7 @@ public class OAuth2RetryPolicy implements RetryPolicy {
    public OAuth2RetryPolicy(SpiceService _spiceService) {
       super();
       this.spiceService = _spiceService;
+      // TODO accept a grant
    }
 
    /**
