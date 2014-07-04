@@ -2,6 +2,8 @@ package tv.px.android.robospice.robospice_oauth2;
 
 import java.util.Set;
 
+import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpiceRequest;
+
 import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
 import com.octo.android.robospice.request.CachedSpiceRequest;
 import com.octo.android.robospice.request.listener.RequestListener;
