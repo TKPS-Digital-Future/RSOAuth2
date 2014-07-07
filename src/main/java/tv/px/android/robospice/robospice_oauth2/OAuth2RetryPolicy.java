@@ -1,6 +1,5 @@
 package tv.px.android.robospice.robospice_oauth2;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -120,7 +119,7 @@ public class OAuth2RetryPolicy implements RetryPolicy {
       /**
        * Called when the refresh-request failed. Sets the retry-count to 0.
        * 
-       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestFailure(com.octo.android.robospice.persistence.exception.SpiceException)
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestFailure(SpiceException)
        */
       public void onRequestFailure(SpiceException arg0) {
          retryCount = 0;
