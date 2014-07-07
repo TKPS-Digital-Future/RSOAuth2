@@ -1,6 +1,7 @@
 package tv.px.android.robospice.robospice_oauth2;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.http.HttpStatus;
@@ -98,8 +99,8 @@ public class OAuth2RetryPolicy implements RetryPolicy {
                      "tv.px.android.robospice.robospice_oauth.refresh_request", DurationInMillis.ALWAYS_EXPIRED);
 
             // initialize and encapsulate request-listener
-            Set<RequestListener<?>> requestListenerSet = Collections.singleton(null);
-            // TODO request-listener needs to check for permanent error and update retry-count
+            Set<RequestListener<?>> requestListenerSet = new HashSet<RequestListener<?>>();
+            requestListenerSet.add(new GrantRequestListener());
 
             // add request to chain
             spiceService.addRequest(cachedRequest, requestListenerSet);
