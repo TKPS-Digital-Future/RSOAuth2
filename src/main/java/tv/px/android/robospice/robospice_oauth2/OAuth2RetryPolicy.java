@@ -51,7 +51,8 @@ public class OAuth2RetryPolicy implements RetryPolicy {
     * 
     * @see com.octo.android.robospice.retry.RetryPolicy#retry(SpiceException)
     * 
-    * @param arg0 the exception that occured during last request invocation
+    * @param arg0
+    *           the exception that occurred during last request invocation
     */
    public void retry(SpiceException arg0) {
       // TODO check for oauth-error and try refreshing the token
