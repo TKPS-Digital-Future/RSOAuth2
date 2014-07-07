@@ -81,8 +81,8 @@ public class OAuth2RetryPolicy implements RetryPolicy {
          HttpClientErrorException exception = (HttpClientErrorException) arg0.getCause();
          if (exception.getStatusCode().equals(HttpStatus.UNAUTHORIZED)) {
             Ln.d("401 ERROR");
-      // TODO check for oauth-error and try refreshing the token
-      // TODO propagate the refreshed token to the others
+            // TODO check for oauth-error and try refreshing the token
+            // TODO propagate the refreshed token to the others
 
             // initialize and encapsulate spice-request
             OAuth2RefreshAccessRequest refreshRequest = new OAuth2RefreshAccessRequest(AccessGrant.class,
@@ -93,6 +93,9 @@ public class OAuth2RetryPolicy implements RetryPolicy {
             // initialize and encapsulate request-listener
             Set<RequestListener<?>> requestListenerSet = Collections.singleton(null);
             // TODO request-listener needs to check for permanent error and update retry-count
+
+            // add request to chain
+            spiceService.addRequest(cachedRequest, requestListenerSet);
          } else {
             Ln.d("Other HTTP exception");
             // TODO handle downstream, set retry-count to 0
