@@ -1,5 +1,7 @@
 package tv.px.android.robospice.robospice_oauth2;
 
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.OAuth2Template;
 import com.octo.android.robospice.SpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.retry.RetryPolicy;
@@ -11,6 +13,8 @@ import com.octo.android.robospice.retry.RetryPolicy;
 public class OAuth2RetryPolicy implements RetryPolicy {
 
    private SpiceService spiceService;
+   private OAuth2Template oauth2Template;
+   private AccessGrant accessGrant;
 
    /**
     * The default constructor. A spice-service is required to fire the request to refresh the token.
