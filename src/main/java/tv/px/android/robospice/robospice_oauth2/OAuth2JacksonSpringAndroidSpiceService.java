@@ -21,6 +21,19 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
    private AccessGrant currentGrant;
 
    /**
+    * Initializes the service and the {@link OAuth2Template}.
+    * 
+    * @see com.octo.android.robospice.SpringAndroidSpiceService#onCreate()
+    */
+   @Override
+   public void onCreate() {
+      super.onCreate();
+      oauth2Template = new OAuth2Template(null, null, null, null, null);
+      // TODO properly initialize template with dummy-data now
+      // TODO properly initialize template with correct data
+   }
+
+   /**
     * Add a request to the queue. If it is an {@link OAuth2SpringAndroidSpiceRequest}, an {@link OAuth2RetryPolicy} will
     * be created and set.
     * 
