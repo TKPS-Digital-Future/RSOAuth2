@@ -18,6 +18,14 @@ import com.octo.android.robospice.request.listener.RequestListener;
  */
 public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroidSpiceService {
 
+   private final static String preferencesName = "tv.px.android.robospice.robospice_oauth2.accessGrant";
+   
+   private final static String accessTokenKey = "accessToken";
+   private final static String scopeKey = "scope";
+   private final static String refreshTokenKey = "refreshToken";
+   private final static String expiresInKey = "expiresIn";
+
+
    private OAuth2Template oauth2Template;
    private AccessGrant currentGrant;
 
@@ -36,11 +44,11 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
       // load initial access grant from shared preferences
       // TODO set default values to dummy-data now
       // TODO add error-handling
-      SharedPreferences sharedPreferences = getSharedPreferences("tv.px.android.robospice.robospice_oauth2.accessGrant", MODE_MULTI_PROCESS);
-      String accessToken = sharedPreferences.getString("accessToken", "");
-      String scope = sharedPreferences.getString("scope", "");
-      String refreshToken = sharedPreferences.getString("refreshToken", "");
-      Long expiresIn = sharedPreferences.getLong("expiresIn", 0);
+      SharedPreferences sharedPreferences = getSharedPreferences(preferencesName, MODE_MULTI_PROCESS);
+      String accessToken = sharedPreferences.getString(accessTokenKey, "");
+      String scope = sharedPreferences.getString(scopeKey, "");
+      String refreshToken = sharedPreferences.getString(refreshTokenKey, "");
+      Long expiresIn = sharedPreferences.getLong(expiresInKey, 0);
       
       currentGrant = new AccessGrant(accessToken, scope, refreshToken, expiresIn);
    }
