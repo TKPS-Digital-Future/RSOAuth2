@@ -2,6 +2,9 @@ package tv.px.android.robospice.robospice_oauth2;
 
 import java.util.Set;
 
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.OAuth2Template;
+
 import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpiceRequest;
 
 import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
@@ -13,6 +16,9 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * caching.
  */
 public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroidSpiceService {
+
+   private OAuth2Template oauth2Template;
+   private AccessGrant currentGrant;
 
    /**
     * Add a request to the queue. If it is an {@link OAuth2SpringAndroidSpiceRequest}, an {@link OAuth2RetryPolicy} will
