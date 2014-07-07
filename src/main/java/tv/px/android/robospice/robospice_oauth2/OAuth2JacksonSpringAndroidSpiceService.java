@@ -9,6 +9,7 @@ import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpice
 import android.content.SharedPreferences;
 
 import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.CachedSpiceRequest;
 import com.octo.android.robospice.request.listener.RequestListener;
 
@@ -78,4 +79,23 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
 
    // TODO verification of hostname/certificate using either request factory or connection factory
 
+   private class GrantRequestListener implements RequestListener<AccessGrant> {
+
+      /**
+       * Grant-request failed. Handle downstream.
+       * 
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestFailure(com.octo.android.robospice.persistence.exception.SpiceException)
+       */
+      public void onRequestFailure(SpiceException arg0) {
+         // NO-OP, handle downstream
+      }
+
+      /**
+       * Grant-request succeeded, update global grant. Also write it to shared preferences.
+       * 
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestSuccess(java.lang.Object)
+       */
+      public void onRequestSuccess(AccessGrant arg0) {
+      }
+   }
 }
