@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;
 
+import tv.px.android.robospice.robospice_oauth2.request.OAuth2AccessRequest;
 import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpiceRequest;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -70,9 +71,9 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
       if (request.getSpiceRequest() instanceof OAuth2SpringAndroidSpiceRequest) {
          OAuth2RetryPolicy retryPolicy = new OAuth2RetryPolicy(this, oauth2Template, currentGrant);
          request.getSpiceRequest().setRetryPolicy(retryPolicy);
+      } else if (request.getSpiceRequest() instanceof OAuth2AccessRequest) {
+         listRequestListener.add(new GrantRequestListener());
       }
-
-      // TODO if the request is for a grant, add a custom listener that will update the grant here
 
       super.addRequest(request, listRequestListener);
    }
