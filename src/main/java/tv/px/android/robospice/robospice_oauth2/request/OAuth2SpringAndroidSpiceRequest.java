@@ -1,7 +1,5 @@
 package tv.px.android.robospice.robospice_oauth2.request;
 
-import tv.px.android.robospice.robospice_oauth2.OAuth2RetryPolicy;
-
 import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 
 /**
