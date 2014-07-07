@@ -21,11 +21,16 @@ public class OAuth2RetryPolicy implements RetryPolicy {
     * 
     * @param _spiceService
     *           instance of the running spice-service
+    * @param _oauth2Template
+    *           OAuth2Template for the communication with the grant-endpoint
+    * @param _accessGrant
+    *           existing access-grant to extract the refresh-token from
     */
-   public OAuth2RetryPolicy(SpiceService _spiceService) {
+   public OAuth2RetryPolicy(SpiceService _spiceService, OAuth2Template _oauth2Template, AccessGrant _accessGrant) {
       super();
       this.spiceService = _spiceService;
-      // TODO accept a grant
+      this.oauth2Template = _oauth2Template;
+      this.accessGrant = _accessGrant;
    }
 
    /**
