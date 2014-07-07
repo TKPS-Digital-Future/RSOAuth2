@@ -6,6 +6,7 @@ import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;
 
 import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpiceRequest;
+import android.content.SharedPreferences;
 
 import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
 import com.octo.android.robospice.request.CachedSpiceRequest;
@@ -31,6 +32,17 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
       oauth2Template = new OAuth2Template(null, null, null, null, null);
       // TODO properly initialize template with dummy-data now
       // TODO properly initialize template with correct data
+      
+      // load initial access grant from shared preferences
+      // TODO set default values to dummy-data now
+      // TODO add error-handling
+      SharedPreferences sharedPreferences = getSharedPreferences("tv.px.android.robospice.robospice_oauth2.accessGrant", MODE_MULTI_PROCESS);
+      String accessToken = sharedPreferences.getString("accessToken", "");
+      String scope = sharedPreferences.getString("scope", "");
+      String refreshToken = sharedPreferences.getString("refreshToken", "");
+      Long expiresIn = sharedPreferences.getLong("expiresIn", 0);
+      
+      currentGrant = new AccessGrant(accessToken, scope, refreshToken, expiresIn);
    }
 
    /**
