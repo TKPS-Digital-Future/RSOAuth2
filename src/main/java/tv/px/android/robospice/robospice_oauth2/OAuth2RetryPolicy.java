@@ -1,8 +1,14 @@
 package tv.px.android.robospice.robospice_oauth2;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;
+import org.springframework.web.client.HttpClientErrorException;
+
+import roboguice.util.temp.Ln;
+
 import com.octo.android.robospice.SpiceService;
+import com.octo.android.robospice.exception.RequestCancelledException;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.retry.RetryPolicy;
 
@@ -64,7 +70,22 @@ public class OAuth2RetryPolicy implements RetryPolicy {
     *           the exception that occurred during last request invocation
     */
    public void retry(SpiceException arg0) {
+      if (arg0.getCause() instanceof HttpClientErrorException) {
+         HttpClientErrorException exception = (HttpClientErrorException) arg0.getCause();
+         if (exception.getStatusCode().equals(HttpStatus.UNAUTHORIZED)) {
+            Ln.d("401 ERROR");
       // TODO check for oauth-error and try refreshing the token
       // TODO propagate the refreshed token to the others
+         } else {
+            Ln.d("Other HTTP exception");
+            // TODO handle downstream, set retry-count to 0
+         }
+      } else if (arg0 instanceof RequestCancelledException) {
+         Ln.d("Cancelled");
+         // TODO handle downstream, set retry-count to 0
+      } else {
+         Ln.d("Other exception");
+         // TODO handle downstream, set retry-count to 0
+      }
    }
 }
