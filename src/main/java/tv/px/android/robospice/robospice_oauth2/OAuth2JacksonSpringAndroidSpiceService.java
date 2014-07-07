@@ -96,6 +96,7 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
        * @see com.octo.android.robospice.request.listener.RequestListener#onRequestSuccess(java.lang.Object)
        */
       public void onRequestSuccess(AccessGrant arg0) {
+         currentGrant = arg0;
       }
    }
 }
