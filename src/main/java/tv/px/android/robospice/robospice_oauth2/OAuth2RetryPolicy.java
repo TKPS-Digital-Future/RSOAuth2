@@ -25,9 +25,15 @@ import com.octo.android.robospice.retry.RetryPolicy;
  */
 public class OAuth2RetryPolicy implements RetryPolicy {
 
+   // SpiceService to fire the refresh-request
    private SpiceService spiceService;
+
+   // OAuth2Template and AccessGrant to initialize the refresh-request
    private OAuth2Template oauth2Template;
    private AccessGrant accessGrant;
+
+   // internal state
+   private int retryCount = 0;
 
    /**
     * The default constructor. A spice-service is required to fire the request to refresh the token.
@@ -63,9 +69,7 @@ public class OAuth2RetryPolicy implements RetryPolicy {
     * @return the remaining number of retry attempts. When this method returns 0, request is not retried anymore
     */
    public int getRetryCount() {
-      // TODO should probably be 2 or 3 for oauth-errors and a sensible
-      // default for others
-      return 0;
+      return retryCount;
    }
 
    /**
@@ -84,6 +88,9 @@ public class OAuth2RetryPolicy implements RetryPolicy {
             // TODO check for oauth-error and try refreshing the token
             // TODO propagate the refreshed token to the others
 
+            // set retry-count to 3 in order to get a refresh-request through
+            retryCount = 3;
+
             // initialize and encapsulate spice-request
             OAuth2RefreshAccessRequest refreshRequest = new OAuth2RefreshAccessRequest(AccessGrant.class,
                      oauth2Template, accessGrant.getRefreshToken());
@@ -98,14 +105,14 @@ public class OAuth2RetryPolicy implements RetryPolicy {
             spiceService.addRequest(cachedRequest, requestListenerSet);
          } else {
             Ln.d("Other HTTP exception");
-            // TODO handle downstream, set retry-count to 0
+            retryCount = 0;
          }
       } else if (arg0 instanceof RequestCancelledException) {
          Ln.d("Cancelled");
-         // TODO handle downstream, set retry-count to 0
+         retryCount = 0;
       } else {
          Ln.d("Other exception");
-         // TODO handle downstream, set retry-count to 0
+         retryCount = 0;
       }
    }
 }
