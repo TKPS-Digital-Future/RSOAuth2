@@ -1,5 +1,8 @@
 package tv.px.android.robospice.robospice_oauth2;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;
@@ -13,6 +16,7 @@ import com.octo.android.robospice.exception.RequestCancelledException;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.CachedSpiceRequest;
+import com.octo.android.robospice.request.listener.RequestListener;
 import com.octo.android.robospice.retry.RetryPolicy;
 
 /**
@@ -85,6 +89,10 @@ public class OAuth2RetryPolicy implements RetryPolicy {
                      oauth2Template, accessGrant.getRefreshToken());
             CachedSpiceRequest<AccessGrant> cachedRequest = new CachedSpiceRequest<AccessGrant>(refreshRequest,
                      "tv.px.android.robospice.robospice_oauth.refresh_request", DurationInMillis.ALWAYS_EXPIRED);
+
+            // initialize and encapsulate request-listener
+            Set<RequestListener<?>> requestListenerSet = Collections.singleton(null);
+            // TODO request-listener needs to check for permanent error and update retry-count
          } else {
             Ln.d("Other HTTP exception");
             // TODO handle downstream, set retry-count to 0
