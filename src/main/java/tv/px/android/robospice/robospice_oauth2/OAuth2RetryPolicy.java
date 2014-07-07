@@ -87,7 +87,6 @@ public class OAuth2RetryPolicy implements RetryPolicy {
          if (exception.getStatusCode().equals(HttpStatus.UNAUTHORIZED)) {
             Ln.d("401 ERROR");
             // TODO check for oauth-error and try refreshing the token
-            // TODO propagate the refreshed token to the others
 
             // set retry-count to 3 in order to get a refresh-request through
             retryCount = 3;
