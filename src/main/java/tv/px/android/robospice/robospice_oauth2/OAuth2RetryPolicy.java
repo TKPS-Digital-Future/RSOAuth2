@@ -6,10 +6,13 @@ import org.springframework.social.oauth2.OAuth2Template;
 import org.springframework.web.client.HttpClientErrorException;
 
 import roboguice.util.temp.Ln;
+import tv.px.android.robospice.robospice_oauth2.request.OAuth2RefreshAccessRequest;
 
 import com.octo.android.robospice.SpiceService;
 import com.octo.android.robospice.exception.RequestCancelledException;
+import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.CachedSpiceRequest;
 import com.octo.android.robospice.retry.RetryPolicy;
 
 /**
@@ -76,6 +79,12 @@ public class OAuth2RetryPolicy implements RetryPolicy {
             Ln.d("401 ERROR");
       // TODO check for oauth-error and try refreshing the token
       // TODO propagate the refreshed token to the others
+
+            // initialize and encapsulate spice-request
+            OAuth2RefreshAccessRequest refreshRequest = new OAuth2RefreshAccessRequest(AccessGrant.class,
+                     oauth2Template, accessGrant.getRefreshToken());
+            CachedSpiceRequest<AccessGrant> cachedRequest = new CachedSpiceRequest<AccessGrant>(refreshRequest,
+                     "tv.px.android.robospice.robospice_oauth.refresh_request", DurationInMillis.ALWAYS_EXPIRED);
          } else {
             Ln.d("Other HTTP exception");
             // TODO handle downstream, set retry-count to 0
