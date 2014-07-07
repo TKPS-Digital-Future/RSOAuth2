@@ -11,7 +11,7 @@ import com.octo.android.robospice.request.SpiceRequest;
  */
 public abstract class OAuth2AccessRequest extends SpiceRequest<AccessGrant> {
 
-   protected OAuth2Template oauth2Template;
+   private OAuth2Template oauth2Template;
 
    /**
     * Default constructor sets the {@link OAuth2Template}.
@@ -24,5 +24,12 @@ public abstract class OAuth2AccessRequest extends SpiceRequest<AccessGrant> {
    public OAuth2AccessRequest(Class<AccessGrant> clazz, OAuth2Template _oauth2Template) {
       super(clazz);
       this.oauth2Template = _oauth2Template;
+   }
+
+   /**
+    * @return the oauth2Template
+    */
+   protected OAuth2Template getOauth2Template() {
+      return oauth2Template;
    }
 }

@@ -33,7 +33,7 @@ public class OAuth2CredentialsAccessRequest extends OAuth2AccessRequest {
 
    @Override
    public AccessGrant loadDataFromNetwork() {
-      return this.oauth2Template.exchangeCredentialsForAccess(username, password, null);
+      return this.getOauth2Template().exchangeCredentialsForAccess(username, password, null);
    }
 
 }

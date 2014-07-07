@@ -28,7 +28,7 @@ public class OAuth2RefreshAccessRequest extends OAuth2AccessRequest {
 
    @Override
    public AccessGrant loadDataFromNetwork() throws Exception {
-      return this.oauth2Template.refreshAccess(refreshToken, null);
+      return this.getOauth2Template().refreshAccess(refreshToken, null);
    }
 
 }
