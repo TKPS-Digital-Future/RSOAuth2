@@ -115,4 +115,28 @@ public class OAuth2RetryPolicy implements RetryPolicy {
          retryCount = 0;
       }
    }
+
+   private class GrantRequestListener implements RequestListener<AccessGrant> {
+
+      /**
+       * Called when the refresh-request failed. Sets the retry-count to 0.
+       * 
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestFailure(com.octo.android.robospice.persistence.exception.SpiceException)
+       */
+      public void onRequestFailure(SpiceException arg0) {
+         retryCount = 0;
+      }
+
+      /**
+       * Called when the refresh-request was successful. Sets the retry-count to 1 and updates the internal
+       * access-grant.
+       * 
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestSuccess(java.lang.Object)
+       */
+      public void onRequestSuccess(AccessGrant arg0) {
+         retryCount = 1;
+         accessGrant = arg0;
+      }
+
+   }
 }
