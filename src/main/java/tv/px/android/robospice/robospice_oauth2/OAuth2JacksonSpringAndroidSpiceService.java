@@ -7,6 +7,7 @@ import org.springframework.social.oauth2.OAuth2Template;
 
 import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpiceRequest;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -97,6 +98,13 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
        */
       public void onRequestSuccess(AccessGrant arg0) {
          currentGrant = arg0;
+         
+         Editor editor = getSharedPreferences(preferencesName, MODE_MULTI_PROCESS).edit();
+         editor.putString(accessTokenKey, arg0.getAccessToken());
+         editor.putString(scopeKey, arg0.getScope());
+         editor.putString(refreshTokenKey, arg0.getRefreshToken());
+         editor.putLong(expiresInKey, arg0.getExpireTime());
+         editor.commit();
       }
    }
 }
