@@ -51,12 +51,12 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
          request.getSpiceRequest().setRetryPolicy(retryPolicy);
          // TODO set the grant for the request
       }
-      
+
       // TODO if the request is for a grant, add a custom listener that will update the grant here
-      
+
       super.addRequest(request, listRequestListener);
    }
-   
+
    // TODO verification of hostname/certificate using either request factory or connection factory
 
 }
