@@ -59,9 +59,8 @@ public class OAuth2RetryPolicy implements RetryPolicy {
     * @return the delay to sleep between each retry attempt (in ms)
     */
    public long getDelayBeforeRetry() {
-      // TODO find and return a sensible value
-      // TODO return 0 if the refresh-request has finished successfully
-      return 0;
+      // from DefaultRetryPolicy
+      return 2500;
    }
 
    /**
