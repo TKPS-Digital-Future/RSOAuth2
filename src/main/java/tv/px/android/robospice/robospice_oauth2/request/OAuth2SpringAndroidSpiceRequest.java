@@ -19,7 +19,6 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     */
    public OAuth2SpringAndroidSpiceRequest(Class<RESULT> clazz) {
       super(clazz);
-      // TODO accept a grant
    }
 
    /**
@@ -31,6 +30,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     */
    @Override
    public RESULT loadDataFromNetwork() {
+      // TODO get grant from shared preferences
       // TODO add OAuth2-authorization-header to request
       // TODO fire request
       // TODO handle generic exceptions
