@@ -17,7 +17,7 @@ import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceReques
  *           type of the expected result
  */
 public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndroidSpiceRequest<RESULT> {
-   
+
    private AccessGrant accessGrant;
    private HttpMethod method;
    private URI url;
@@ -37,7 +37,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
       this.method = _method;
       this.url = _url;
    }
-   
+
    /**
     * Set the access-grant for this request.
     * 
@@ -57,7 +57,8 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     */
    @Override
    public final RESULT loadDataFromNetwork() {
-      return getRestTemplate().exchange(url, method, new HttpEntity<RESULT>(getAuthHeader()), getResultType()).getBody();
+      return getRestTemplate().exchange(url, method, new HttpEntity<RESULT>(getAuthHeader()), getResultType())
+               .getBody();
    }
 
    @SuppressWarnings("serial")
