@@ -1,5 +1,7 @@
 package tv.px.android.robospice.robospice_oauth2.request;
 
+import org.springframework.social.oauth2.AccessGrant;
+
 import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 
 /**
@@ -10,6 +12,8 @@ import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceReques
  *           type of the expected result
  */
 public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndroidSpiceRequest<RESULT> {
+   
+   private AccessGrant accessGrant;
 
    /**
     * Default constructor.
@@ -19,6 +23,10 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     */
    public OAuth2SpringAndroidSpiceRequest(Class<RESULT> clazz) {
       super(clazz);
+   }
+   
+   public void setAccessGrant(AccessGrant _accessgrant) {
+      this.accessGrant = _accessgrant;
    }
 
    /**
@@ -30,7 +38,6 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     */
    @Override
    public RESULT loadDataFromNetwork() {
-      // TODO get grant from shared preferences
       // TODO add OAuth2-authorization-header to request
       // TODO fire request
       // TODO handle generic exceptions
