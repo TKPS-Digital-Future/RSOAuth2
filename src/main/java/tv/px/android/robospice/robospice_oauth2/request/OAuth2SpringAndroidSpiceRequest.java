@@ -1,5 +1,8 @@
 package tv.px.android.robospice.robospice_oauth2.request;
 
+import java.net.URI;
+
+import org.springframework.http.HttpMethod;
 import org.springframework.social.oauth2.AccessGrant;
 
 import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
@@ -14,6 +17,8 @@ import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceReques
 public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndroidSpiceRequest<RESULT> {
    
    private AccessGrant accessGrant;
+   private HttpMethod method;
+   private URI url;
 
    /**
     * Default constructor.
@@ -21,8 +26,10 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     * @param clazz
     *           the class-representation of the expected result
     */
-   public OAuth2SpringAndroidSpiceRequest(Class<RESULT> clazz) {
+   public OAuth2SpringAndroidSpiceRequest(Class<RESULT> clazz, HttpMethod _method, URI _url) {
       super(clazz);
+      this.method = _method;
+      this.url = _url;
    }
    
    public void setAccessGrant(AccessGrant _accessgrant) {
