@@ -78,6 +78,9 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
          request.getSpiceRequest().setRetryPolicy(retryPolicy);
 
          authenticatedRequests.add((OAuth2SpringAndroidSpiceRequest<?>) request.getSpiceRequest());
+
+         listRequestListener.add(new AuthenticatedRequestListener<Object>(
+                  (OAuth2SpringAndroidSpiceRequest<Object>) request.getSpiceRequest()));
       } else if (request.getSpiceRequest() instanceof OAuth2AccessRequest) {
          listRequestListener.add(new GrantRequestListener());
       }
