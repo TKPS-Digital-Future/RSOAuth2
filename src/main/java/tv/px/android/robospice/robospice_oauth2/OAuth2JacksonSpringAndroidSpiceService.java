@@ -1,5 +1,6 @@
 package tv.px.android.robospice.robospice_oauth2;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.social.oauth2.AccessGrant;
@@ -31,6 +32,8 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
    private OAuth2Template oauth2Template;
    private AccessGrant currentGrant;
 
+   private Set<OAuth2SpringAndroidSpiceRequest<?>> authenticatedRequests;
+
    /**
     * Initializes the service and the {@link OAuth2Template}.
     * 
@@ -53,6 +56,8 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
       Long expiresIn = sharedPreferences.getLong(expiresInKey, 0);
 
       currentGrant = new AccessGrant(accessToken, scope, refreshToken, expiresIn);
+
+      authenticatedRequests = new HashSet<OAuth2SpringAndroidSpiceRequest<?>>();
    }
 
    /**
