@@ -27,6 +27,10 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     * 
     * @param clazz
     *           the class-representation of the expected result
+    * @param _method
+    *           the HTTP-method of the request (POST/GET/DELETE/etc.)
+    * @param _url
+    *           the target-URI for the request
     */
    public OAuth2SpringAndroidSpiceRequest(Class<RESULT> clazz, HttpMethod _method, URI _url) {
       super(clazz);
@@ -34,6 +38,12 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
       this.url = _url;
    }
    
+   /**
+    * Set the access-grant for this request.
+    * 
+    * @param _accessgrant
+    *           a (hopefully) valid access-grant
+    */
    public void setAccessGrant(AccessGrant _accessgrant) {
       this.accessGrant = _accessgrant;
    }
