@@ -95,7 +95,7 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
       /**
        * Grant-request failed. Handle downstream.
        * 
-       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestFailure(com.octo.android.robospice.persistence.exception.SpiceException)
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestFailure(SpiceException)
        */
       public void onRequestFailure(SpiceException arg0) {
          // NO-OP, handle downstream
@@ -115,6 +115,10 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
          editor.putString(refreshTokenKey, arg0.getRefreshToken());
          editor.putLong(expiresInKey, arg0.getExpireTime());
          editor.commit();
+
+         for (OAuth2SpringAndroidSpiceRequest<?> currentRequest : authenticatedRequests) {
+            currentRequest.setAccessGrant(arg0);
+         }
       }
    }
 
