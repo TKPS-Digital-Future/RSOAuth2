@@ -2,6 +2,7 @@ package tv.px.android.robospice.robospice_oauth2.request;
 
 import java.net.URI;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.social.oauth2.AccessGrant;
 
@@ -49,6 +50,16 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
       // TODO fire request
       // TODO handle generic exceptions
       return null;
+   }
+
+   @SuppressWarnings("serial")
+   private HttpHeaders getAuthHeader() {
+      return new HttpHeaders() {
+         {
+            String auth = "Bearer " + accessGrant.getAccessToken();
+            set("Authorization", auth);
+         }
+      };
    }
 
 }
