@@ -91,6 +91,7 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
    }
 
    // TODO verification of hostname/certificate using either request factory or connection factory
+   // request.getRestTemplate.setRequestFactory
 
    private class GrantRequestListener implements RequestListener<AccessGrant> {
 
