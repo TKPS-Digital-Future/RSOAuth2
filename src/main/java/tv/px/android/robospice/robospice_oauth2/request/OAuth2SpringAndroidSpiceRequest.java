@@ -46,7 +46,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     * @return the result of the request
     */
    @Override
-   public RESULT loadDataFromNetwork() {
+   public final RESULT loadDataFromNetwork() {
       return getRestTemplate().exchange(url, method, new HttpEntity<RESULT>(getAuthHeader()), getResultType()).getBody();
    }
 
