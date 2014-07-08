@@ -76,6 +76,8 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
       if (request.getSpiceRequest() instanceof OAuth2SpringAndroidSpiceRequest) {
          OAuth2RetryPolicy retryPolicy = new OAuth2RetryPolicy(this, oauth2Template, currentGrant);
          request.getSpiceRequest().setRetryPolicy(retryPolicy);
+
+         authenticatedRequests.add((OAuth2SpringAndroidSpiceRequest<?>) request.getSpiceRequest());
       } else if (request.getSpiceRequest() instanceof OAuth2AccessRequest) {
          listRequestListener.add(new GrantRequestListener());
       }
@@ -111,5 +113,43 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
          editor.putLong(expiresInKey, arg0.getExpireTime());
          editor.commit();
       }
+   }
+
+   private class AuthenticatedRequestListener<RESULT> implements RequestListener<RESULT> {
+      private OAuth2SpringAndroidSpiceRequest<RESULT> associatedRequest;
+
+      /**
+       * Initialize the request-listener.
+       * 
+       * @param _associatedRequest
+       *           the request associated with this listener
+       */
+      public AuthenticatedRequestListener(OAuth2SpringAndroidSpiceRequest<RESULT> _associatedRequest) {
+         this.associatedRequest = _associatedRequest;
+      }
+
+      /**
+       * Remove request from list of authenticated requests.
+       * 
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestFailure(SpiceException)
+       * 
+       * @param arg0
+       *           the exception that cause the request to fail. Needs to be handled by separate listener
+       */
+      public void onRequestFailure(SpiceException arg0) {
+         authenticatedRequests.remove(associatedRequest);
+      }
+
+      /**
+       * Remove request from list of authenticated requests.
+       * 
+       * @see com.octo.android.robospice.request.listener.RequestListener#onRequestSuccess(java.lang.Object)
+       * @param arg0
+       *           the result of the request. Ignored here
+       */
+      public void onRequestSuccess(RESULT arg0) {
+         authenticatedRequests.remove(associatedRequest);
+      }
+
    }
 }
