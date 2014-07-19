@@ -52,7 +52,7 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
       String refreshToken = sharedPreferences.getString(refreshTokenKey, "");
       Long expiresIn = sharedPreferences.getLong(expiresInKey, 0);
 
-      currentGrant = new AccessGrant(accessToken, scope, refreshToken, expiresIn);
+      currentGrant = createAccessGrant();
 
       authenticatedRequests = new HashSet<OAuth2SpringAndroidSpiceRequest<?>>();
    }
