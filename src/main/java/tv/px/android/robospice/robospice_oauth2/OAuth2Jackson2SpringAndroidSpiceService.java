@@ -8,8 +8,6 @@ import org.springframework.social.oauth2.OAuth2Template;
 
 import tv.px.android.robospice.robospice_oauth2.request.OAuth2AccessRequest;
 import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpiceRequest;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 
 import com.octo.android.robospice.Jackson2SpringAndroidSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
