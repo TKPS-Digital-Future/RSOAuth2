@@ -71,11 +71,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.octo.android.robospice</groupId>
-		    <artifactId>robospice-spring-android</artifactId>
-		    <version>${com.octo.android.robospice-version}</version>
+			<groupId>com.octo.android.robospice</groupId>
+			<artifactId>robospice-spring-android</artifactId>
+			<version>${com.octo.android.robospice-version}</version>
 		</dependency>
 
 		<dependency>
