@@ -16,6 +16,7 @@
 		<com.octo.android.robospice-version>1.4.12</com.octo.android.robospice-version>
 		<org.springframework.security-version>3.2.4.RELEASE</org.springframework.security-version>
 		<com.fasterxml.jackson.core-version>2.4.1.1</com.fasterxml.jackson.core-version>
+		<org.apache.httpcomponents-version>4.3.4</org.apache.httpcomponents-version>
 	</properties>
 
 	<dependencies>
@@ -81,6 +82,12 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${com.fasterxml.jackson.core-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${org.apache.httpcomponents-version}</version>
 		</dependency>
 	</dependencies>
 
