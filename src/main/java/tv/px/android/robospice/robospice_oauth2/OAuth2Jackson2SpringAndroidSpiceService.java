@@ -19,13 +19,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * caching.
  */
 public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2SpringAndroidSpiceService {
-   private final static String preferencesName = "tv.px.android.robospice.robospice_oauth2.accessGrant";
-
-   private final static String accessTokenKey = "accessToken";
-   private final static String scopeKey = "scope";
-   private final static String refreshTokenKey = "refreshToken";
-   private final static String expiresInKey = "expiresIn";
-
+   
    private OAuth2Template oauth2Template;
    private AccessGrant currentGrant;
 
