@@ -41,9 +41,7 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
    @Override
    public void onCreate() {
       super.onCreate();
-      oauth2Template = new OAuth2Template(null, null, null, null, null);
-      // TODO properly initialize template with dummy-data now
-      // TODO properly initialize template with correct data
+      oauth2Template = createOAuth2Template();
 
       // load initial access grant from shared preferences
       // TODO set default values to dummy-data now
