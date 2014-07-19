@@ -61,6 +61,14 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
 
    public abstract AccessGrant createAccessGrant();
 
+   public AccessGrant getCurrentGrant() {
+      return currentGrant;
+   }
+
+   public void setCurrentGrant(AccessGrant currentGrant) {
+      this.currentGrant = currentGrant;
+   }
+
    /**
     * Add a request to the queue. If it is an {@link OAuth2SpringAndroidSpiceRequest}, an {@link OAuth2RetryPolicy} will
     * be created and set.
@@ -75,10 +83,10 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
    @Override
    public void addRequest(CachedSpiceRequest<?> request, Set<RequestListener<?>> listRequestListener) {
       if (request.getSpiceRequest() instanceof OAuth2SpringAndroidSpiceRequest) {
-         OAuth2RetryPolicy retryPolicy = new OAuth2RetryPolicy(this, oauth2Template, currentGrant);
+         OAuth2RetryPolicy retryPolicy = new OAuth2RetryPolicy(this, oauth2Template, getCurrentGrant());
          request.getSpiceRequest().setRetryPolicy(retryPolicy);
 
-         ((OAuth2SpringAndroidSpiceRequest<?>) request.getSpiceRequest()).setAccessGrant(currentGrant);
+         ((OAuth2SpringAndroidSpiceRequest<?>) request.getSpiceRequest()).setAccessGrant(getCurrentGrant());
 
          authenticatedRequests.add((OAuth2SpringAndroidSpiceRequest<?>) request.getSpiceRequest());
 
@@ -111,7 +119,6 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
        * @see com.octo.android.robospice.request.listener.RequestListener#onRequestSuccess(java.lang.Object)
        */
       public void onRequestSuccess(AccessGrant arg0) {
-         currentGrant = arg0;
 
          Editor editor = getSharedPreferences(preferencesName, MODE_MULTI_PROCESS).edit();
          editor.putString(accessTokenKey, arg0.getAccessToken());
@@ -119,6 +126,7 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
          editor.putString(refreshTokenKey, arg0.getRefreshToken());
          editor.putLong(expiresInKey, arg0.getExpireTime());
          editor.commit();
+         setCurrentGrant(arg0);
 
          for (OAuth2SpringAndroidSpiceRequest<?> currentRequest : authenticatedRequests) {
             currentRequest.setAccessGrant(arg0);
