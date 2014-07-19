@@ -11,7 +11,7 @@ import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpice
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
+import com.octo.android.robospice.Jackson2SpringAndroidSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.CachedSpiceRequest;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -20,8 +20,8 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * A {@link SpringAndroidSpiceService} dedicated to json web services via Jackson protected with OAuth2. Provides
  * caching.
  */
-public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroidSpiceService {
 
+public class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2SpringAndroidSpiceService {
    private final static String preferencesName = "tv.px.android.robospice.robospice_oauth2.accessGrant";
 
    private final static String accessTokenKey = "accessToken";
@@ -76,7 +76,7 @@ public class OAuth2JacksonSpringAndroidSpiceService extends JacksonSpringAndroid
       if (request.getSpiceRequest() instanceof OAuth2SpringAndroidSpiceRequest) {
          OAuth2RetryPolicy retryPolicy = new OAuth2RetryPolicy(this, oauth2Template, currentGrant);
          request.getSpiceRequest().setRetryPolicy(retryPolicy);
-         
+
          ((OAuth2SpringAndroidSpiceRequest<?>) request.getSpiceRequest()).setAccessGrant(currentGrant);
 
          authenticatedRequests.add((OAuth2SpringAndroidSpiceRequest<?>) request.getSpiceRequest());
