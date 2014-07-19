@@ -28,6 +28,23 @@
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-core</artifactId>
 			<version>${org.springframework.social-version}</version>
+			<exclusions>
+				<!-- Exclude in favor of Spring Android RestTemplate -->
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<!-- Provided by Android -->
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<!-- Exclude in favor of Spring Android Core -->
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		
 		<dependency>
