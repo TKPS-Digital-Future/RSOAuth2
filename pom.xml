@@ -10,8 +10,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<android.sdk.version>4.1.1.4</android.sdk.version>
-		<android.plugin.version>3.6.0</android.plugin.version>
+		<com.google.android-version>4.1.1.4</com.google.android-version>
+		<com.jayway.maven.plugins.android.generation2-version>3.6.0</com.jayway.maven.plugins.android.generation2-version>
 		<org.springframework.social-version>1.1.0.RELEASE</org.springframework.social-version>
 		<com.octo.android.robospice-version>1.4.12</com.octo.android.robospice-version>
 	</properties>
@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${android.sdk.version}</version>
+			<version>${com.google.android-version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -42,7 +42,7 @@
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
-				<version>${android.plugin.version}</version>
+				<version>${com.jayway.maven.plugins.android.generation2-version}</version>
 				<extensions>true</extensions>
 				<configuration>
 					<sdk>
