@@ -20,8 +20,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * A {@link SpringAndroidSpiceService} dedicated to json web services via Jackson protected with OAuth2. Provides
  * caching.
  */
-
-public class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2SpringAndroidSpiceService {
+public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2SpringAndroidSpiceService {
    private final static String preferencesName = "tv.px.android.robospice.robospice_oauth2.accessGrant";
 
    private final static String accessTokenKey = "accessToken";
@@ -59,6 +58,10 @@ public class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2SpringAndro
 
       authenticatedRequests = new HashSet<OAuth2SpringAndroidSpiceRequest<?>>();
    }
+
+   public abstract OAuth2Template createOAuth2Template();
+
+   public abstract AccessGrant createAccessGrant();
 
    /**
     * Add a request to the queue. If it is an {@link OAuth2SpringAndroidSpiceRequest}, an {@link OAuth2RetryPolicy} will
