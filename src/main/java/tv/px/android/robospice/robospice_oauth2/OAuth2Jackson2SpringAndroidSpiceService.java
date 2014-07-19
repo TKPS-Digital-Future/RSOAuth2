@@ -110,13 +110,6 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
        * @see com.octo.android.robospice.request.listener.RequestListener#onRequestSuccess(java.lang.Object)
        */
       public void onRequestSuccess(AccessGrant arg0) {
-
-         Editor editor = getSharedPreferences(preferencesName, MODE_MULTI_PROCESS).edit();
-         editor.putString(accessTokenKey, arg0.getAccessToken());
-         editor.putString(scopeKey, arg0.getScope());
-         editor.putString(refreshTokenKey, arg0.getRefreshToken());
-         editor.putLong(expiresInKey, arg0.getExpireTime());
-         editor.commit();
          setCurrentGrant(arg0);
 
          for (OAuth2SpringAndroidSpiceRequest<?> currentRequest : authenticatedRequests) {
