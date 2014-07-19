@@ -43,15 +43,6 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
       super.onCreate();
       oauth2Template = createOAuth2Template();
 
-      // load initial access grant from shared preferences
-      // TODO set default values to dummy-data now
-      // TODO add error-handling
-      SharedPreferences sharedPreferences = getSharedPreferences(preferencesName, MODE_MULTI_PROCESS);
-      String accessToken = sharedPreferences.getString(accessTokenKey, "");
-      String scope = sharedPreferences.getString(scopeKey, "");
-      String refreshToken = sharedPreferences.getString(refreshTokenKey, "");
-      Long expiresIn = sharedPreferences.getLong(expiresInKey, 0);
-
       currentGrant = createAccessGrant();
 
       authenticatedRequests = new HashSet<OAuth2SpringAndroidSpiceRequest<?>>();
