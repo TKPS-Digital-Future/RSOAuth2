@@ -19,7 +19,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * caching.
  */
 public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2SpringAndroidSpiceService {
-   
+
    private OAuth2Template oauth2Template;
    private AccessGrant currentGrant;
 
@@ -40,16 +40,39 @@ public abstract class OAuth2Jackson2SpringAndroidSpiceService extends Jackson2Sp
       authenticatedRequests = new HashSet<OAuth2SpringAndroidSpiceRequest<?>>();
    }
 
+   /**
+    * Factory-method to create an OAuth2Template used for the retry-policy. Override in subclasses to set up
+    * client-credentials, etc.
+    * 
+    * @return a completely initialized OAuth2Template
+    */
    public abstract OAuth2Template createOAuth2Template();
 
+   /**
+    * Factory-method to create an initial AccessGrant used for the requests and retry-policy. Override in subclasses to
+    * do fancy things like loading it from preferences, etc.
+    * 
+    * @return an AccessGrant containing at least a valid refresh-token
+    */
    public abstract AccessGrant createAccessGrant();
 
+   /**
+    * Get the current AccessGrant. Useful if you want to save it to preferences in a subclass.
+    * 
+    * @return the current AccessGrant
+    */
    public AccessGrant getCurrentGrant() {
       return currentGrant;
    }
 
-   public void setCurrentGrant(AccessGrant currentGrant) {
-      this.currentGrant = currentGrant;
+   /**
+    * Set the current AccessGrant. Called when an OAuth2AccessRequest returns a new grant. Override in subclasses (don't
+    * forget to call super()) to save it to preferences, etc.
+    * 
+    * @param newGrant the new AccessGrant
+    */
+   public void setCurrentGrant(AccessGrant newGrant) {
+      this.currentGrant = newGrant;
    }
 
    /**
