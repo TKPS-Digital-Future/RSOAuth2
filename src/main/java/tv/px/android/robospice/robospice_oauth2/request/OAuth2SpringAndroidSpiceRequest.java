@@ -61,7 +61,6 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
                .getBody();
    }
 
-   @SuppressWarnings("serial")
    private HttpHeaders getAuthHeader() {
       return new HttpHeaders() {
          {
