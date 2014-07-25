@@ -1,4 +1,4 @@
-package tv.px.android.robospice.robospice_oauth2.request;
+package de.pxminds.android.robospice.oauth2.request;
 
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;

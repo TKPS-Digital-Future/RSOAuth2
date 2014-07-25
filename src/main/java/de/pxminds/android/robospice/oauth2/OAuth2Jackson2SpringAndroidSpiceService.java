@@ -1,4 +1,4 @@
-package tv.px.android.robospice.robospice_oauth2;
+package de.pxminds.android.robospice.oauth2;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,13 +6,13 @@ import java.util.Set;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;
 
-import tv.px.android.robospice.robospice_oauth2.request.OAuth2AccessRequest;
-import tv.px.android.robospice.robospice_oauth2.request.OAuth2SpringAndroidSpiceRequest;
-
 import com.octo.android.robospice.Jackson2SpringAndroidSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.CachedSpiceRequest;
 import com.octo.android.robospice.request.listener.RequestListener;
+
+import de.pxminds.android.robospice.oauth2.request.OAuth2AccessRequest;
+import de.pxminds.android.robospice.oauth2.request.OAuth2SpringAndroidSpiceRequest;
 
 /**
  * A {@link SpringAndroidSpiceService} dedicated to json web services via Jackson protected with OAuth2. Provides

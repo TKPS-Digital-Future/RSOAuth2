@@ -1,4 +1,4 @@
-package tv.px.android.robospice.robospice_oauth2.request;
+package de.pxminds.android.robospice.oauth2.request;
 
 import java.net.URI;
 

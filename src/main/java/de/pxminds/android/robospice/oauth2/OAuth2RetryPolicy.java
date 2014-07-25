@@ -1,4 +1,4 @@
-package tv.px.android.robospice.robospice_oauth2;
+package de.pxminds.android.robospice.oauth2;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,6 @@ import org.springframework.social.oauth2.OAuth2Template;
 import org.springframework.web.client.HttpClientErrorException;
 
 import roboguice.util.temp.Ln;
-import tv.px.android.robospice.robospice_oauth2.request.OAuth2RefreshAccessRequest;
 
 import com.octo.android.robospice.SpiceService;
 import com.octo.android.robospice.exception.RequestCancelledException;
@@ -18,6 +17,8 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.CachedSpiceRequest;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.octo.android.robospice.retry.RetryPolicy;
+
+import de.pxminds.android.robospice.oauth2.request.OAuth2RefreshAccessRequest;
 
 /**
  * Retry-policy for requests that try to access resources protected by OAuth2. If the request fails due to an expired
