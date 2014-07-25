@@ -10,19 +10,21 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<com.google.android-version>4.1.1.4</com.google.android-version>
-		<org.springframework.social-version>1.1.0.RELEASE</org.springframework.social-version>
-		<com.octo.android.robospice-version>1.4.12</com.octo.android.robospice-version>
-		<org.springframework.security-version>3.2.4.RELEASE</org.springframework.security-version>
+		<android.sdk.version>4.4.2_r2</android.sdk.version>
+		<java.version>1.7</java.version>
+
 		<com.fasterxml.jackson.core-version>2.4.1.1</com.fasterxml.jackson.core-version>
+		<com.octo.android.robospice-version>1.4.12</com.octo.android.robospice-version>
 		<org.apache.httpcomponents-version>4.3.4</org.apache.httpcomponents-version>
+		<org.springframework.security-version>3.2.4.RELEASE</org.springframework.security-version>
+		<org.springframework.social-version>1.1.0.RELEASE</org.springframework.social-version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${com.google.android-version}</version>
+			<version>${android.sdk.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -89,4 +91,19 @@
 			<version>${org.apache.httpcomponents-version}</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
