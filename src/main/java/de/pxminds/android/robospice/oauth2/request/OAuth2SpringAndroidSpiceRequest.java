@@ -42,6 +42,27 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
    }
 
    /**
+    * Constructor to allow passing a custom HTTP-Entity. Be careful to add the getAuthHeader() to this entity!
+    * 
+    * @param clazz
+    *           the class-representation of the expected result
+    * @param _method
+    *           the HTTP-method of the request (POST/GET/DELETE/etc.)
+    * @param _url
+    *           the target-URI for the request
+    * @param _httpEntity
+    *           the custom HTTP-Entity. Could contain a JSON-body for POST- or PUT-requests. Should contain the
+    *           getAuthHeader()
+    */
+   public OAuth2SpringAndroidSpiceRequest(Class<RESULT> clazz, HttpMethod _method, URI _url,
+            HttpEntity<RESULT> _httpEntity) {
+      super(clazz);
+      this.method = _method;
+      this.url = _url;
+      this.httpEntity = _httpEntity;
+   }
+
+   /**
     * Set the access-grant for this request.
     * 
     * @param _accessgrant
