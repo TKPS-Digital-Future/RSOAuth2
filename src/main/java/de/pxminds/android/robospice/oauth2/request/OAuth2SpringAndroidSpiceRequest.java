@@ -22,6 +22,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
    private AccessGrant accessGrant;
    private final HttpMethod method;
    private final URI url;
+   private final HttpEntity<RESULT> httpEntity;
 
    /**
     * Default constructor.
@@ -37,6 +38,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
       super(clazz);
       this.method = _method;
       this.url = _url;
+      this.httpEntity = new HttpEntity<RESULT>(getAuthHeader());
    }
 
    /**
@@ -58,8 +60,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
     */
    @Override
    public final RESULT loadDataFromNetwork() {
-      return getRestTemplate().exchange(url, method, new HttpEntity<RESULT>(getAuthHeader()), getResultType())
-               .getBody();
+      return getRestTemplate().exchange(url, method, httpEntity, getResultType()).getBody();
    }
 
    protected HttpHeaders getAuthHeader() {
