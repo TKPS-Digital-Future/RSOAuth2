@@ -19,8 +19,8 @@ import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceReques
 public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndroidSpiceRequest<RESULT> {
 
    private AccessGrant accessGrant;
-   private HttpMethod method;
-   private URI url;
+   private final HttpMethod method;
+   private final URI url;
 
    /**
     * Default constructor.
