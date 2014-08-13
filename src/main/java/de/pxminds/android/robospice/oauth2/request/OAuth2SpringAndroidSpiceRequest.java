@@ -62,7 +62,7 @@ public abstract class OAuth2SpringAndroidSpiceRequest<RESULT> extends SpringAndr
                .getBody();
    }
 
-   private HttpHeaders getAuthHeader() {
+   protected HttpHeaders getAuthHeader() {
       return new HttpHeaders() {
          {
             String auth = "Bearer " + accessGrant.getAccessToken();
