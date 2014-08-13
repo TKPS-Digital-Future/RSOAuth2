@@ -11,7 +11,8 @@ import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceReques
 
 /**
  * Abstract class for requests that try to access resources protected by OAuth2. Sets the HTTP-Authentication-header. If
- * you set a {@link OAuth2RetryPolicy} as retry-policy, this becomes even more useful.
+ * you set a {@link de.pxminds.android.robospice.oauth2.OAuth2RetryPolicy} as retry-policy, this becomes even more
+ * useful.
  * 
  * @param <RESULT>
  *           type of the expected result
